@@ -1,0 +1,228 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+	font-family: "Onest";
+    background: #fff;
+    font-weight: 500;
+    --purple-color: rgb(60, 0, 94);
+    --white-color: rgb(255, 255, 255);
+    --black-color: rgb(0, 0, 0);
+    --light-gray-color: rgb(161, 161, 161);
+    --gray-color: rgb(43, 43, 43);
+    --gray-color-2: rgb(13, 13, 13);
+}
+
+.header {
+    flex: none;
+    height: auto;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    will-change: transform;
+    z-index: 1;
+}
+
+.header__nav {
+    border-bottom-width: 1px;
+    border-color: var(--gray-color, rgb(235, 235, 235));
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-style: solid;
+    border-top-width: 0px;
+    background-color: var(--gray-color-2, rgb(250, 250, 250));
+    width: 100%;
+    opacity: 1;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0px;
+    height: min-content;
+    justify-content: flex-start;
+    overflow: visible;
+    padding: 0;
+    position: relative;
+}
+
+/* -------------------------logo------------------------- */
+
+.header__logo {
+    align-items: center;
+    display: flex;
+    flex: 1 0 0px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 16px;
+    height: min-content;
+    justify-content: flex-start;
+    overflow: visible;
+    padding: 12px;
+    position: relative;
+    width: 1px;
+}
+
+.header__logo-link {
+    cursor: pointer;
+    flex: none;
+    height: 20px;
+    position: relative;
+    text-decoration: none;
+    width: 148px;
+}
+
+.header__logo-cont {
+    position: absolute;
+    border-radius: inherit;
+    inset: 0px;
+}
+
+.header__logo-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    object-position: center center;
+    object-fit: contain;
+}
+
+/* -------------------------buttons------------------------- */
+
+.header__main {
+    align-items: center;
+    display: flex;
+    flex: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 24px;
+    height: min-content;
+    justify-content: flex-start;
+    overflow: visible;
+    padding: 12px;
+    position: relative;
+    width: min-content;
+}
+
+.header__main-commonbutton {
+    outline: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    transform: none;
+    opacity: 1;
+    cursor: pointer;
+    flex: none;
+    height: auto;
+    position: relative;
+    user-select: none;
+    white-space: pre;
+    font-size: 16px;
+    width: auto;
+    color: var(--light-gray-color);
+    transition: all 0.2s ease;
+}
+
+.active, .header__main-commonbutton:hover {
+    color: var(--white-color)
+}
+
+.header__main-commonbutton p {
+}
+
+.header__main-commonbutton p a {
+}
+
+.header__main-importbuttons {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 16px;
+    height: min-content;
+    justify-content: center;
+    overflow: visible;
+    padding: 0;
+    position: relative;
+    width: min-content;
+}
+
+.header__main-importbuttons div {
+    flex: none;
+    height: auto;
+    position: relative;
+    width: auto;
+}
+
+.header__main-regbutton {
+    --border-bottom-width: 1px;
+    --border-color: var(--gray-color, rgb(235, 235, 235));
+    --border-left-width: 1px;
+    --border-right-width: 1px;
+    --border-style: solid;
+    --border-top-width: 1px;
+    border-radius: 8px;
+    opacity: 1;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 12px;
+    font-size: 16px;
+    height: min-content;
+    justify-content: center;
+    overflow: hidden;
+    padding: 16px;
+    position: relative;
+    text-decoration: none;
+    width: min-content;
+    background-color: var(--white-color, rgb(235, 235, 235));
+    color: var(--black-color);
+    transition: all 0.3s ease;
+}
+
+.header__main-regbutton:hover {
+    opacity: 0.6;
+}
+
+.header__main-defbutton {
+    border: 1px solid var(--gray-color, rgb(235, 235, 235));
+    background-color: rgb(0, 0, 0, 0);
+    border-radius: 8px;
+    opacity: 1;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    font-size: 16px;
+    gap: 12px;
+    height: min-content;
+    justify-content: center;
+    overflow: hidden;
+    padding: 16px;
+    color: var(--white-color);
+    position: relative;
+    text-decoration: none;
+    width: min-content;
+    transition: all 0.3s ease;
+}
+
+.header__main-defbutton:hover {
+    border-color: var(--white-color);
+}
