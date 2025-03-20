@@ -192,7 +192,7 @@ body {
     display: flex;
     flex: none;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 64px;
     height: min-content;
     justify-content: flex-start;
@@ -263,4 +263,13 @@ body {
     font-weight: 400;
     line-height: 1.5em;
     color: var(--light-gray-color);
+}
+
+@media(max-width:880px) {
+    .footer-top__right form {
+        flex-direction: column;
+    }
+    .footer-top__right form input {
+        width: auto;
+    }
 }

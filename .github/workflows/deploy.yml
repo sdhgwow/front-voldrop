@@ -1,0 +1,37 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+
+      - name: set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: install dependencies
+        run: npm install
+
+      - name: build project
+        run: npm run build
+
+      - name: deploy to server
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST_PROD }}
+          SSH_USER: ${{ secrets.SSH_USER_PROD }}
+          SSH_PASS: ${{ secrets.SSH_PASS_PROD }}
+          DEPLOY_PATH: ${{ '/voldrop' }}
+        run: |
+          sudo apt-get update && sudo apt-get install -y sshpass
+          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "mkdir -p $DEPLOY_PATH"
+          sshpass -p "$SSH_PASS" rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" ./dist/ $SSH_USER@$SSH_HOST:$DEPLOY_PATH
+          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "sudo systemctl restart nginx"
