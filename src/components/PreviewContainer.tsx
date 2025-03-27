@@ -30,18 +30,23 @@ export function PreviewContainer({ applyFilters }) {
     const [minLimit, setMinLimit] = useState<number>(0);
 
     function toggleDropdown(e) {
-        setDropped(prev => !prev);
-
-        if (!dropped) {
+        if (dropped) {
+            setIsAnimating(false);
+            setIsHiding(true);
+            setDropped(false);
+        } 
+        else {
             const parent = e.currentTarget;
             const rect = parent.getBoundingClientRect();
-
+            
             setDropdownPosition({
                 top: rect.bottom + window.scrollY + 10,
                 left: rect.left + window.scrollX
             });
+            
+            setDropped(true);
         }
-    };
+    }
 
     const minPercent = ((minPrice - minLimit) / (maxLimit - minLimit)) * 100;
     const maxPercent = ((maxPrice - minLimit) / (maxLimit - minLimit)) * 100;
@@ -136,19 +141,11 @@ export function PreviewContainer({ applyFilters }) {
     }
 
     useEffect(() => {
-        if (dropped) {
+        if (dropped && !isHiding) {
             setIsHiding(false);
             setTimeout(() => setIsAnimating(true), 10);
-        } else {
-            setIsAnimating(false);
-            setIsHiding(true);
-
-            setTimeout(() => {
-                setDropped(false);
-                setIsHiding(false);
-            }, 300);
         }
-    }, [dropped]);
+    }, [dropped, isHiding]);
 
     function handleApplyFilters() {
         const updatedFilters = {
@@ -166,6 +163,7 @@ export function PreviewContainer({ applyFilters }) {
             maxPrice: maxPrice.toString(),
         };
 
+        setDropped(false);
         applyFilters(updatedFilters);
     }
 
@@ -180,7 +178,7 @@ export function PreviewContainer({ applyFilters }) {
                             </div>
                             <div className='preview-space' />
                             <div className='preview-infoblock__desc'>
-                                <h2>Даем широкий выбор среди брендовых вещей премиум-реплики и оригинала</h2>
+                                <h2>Широкий выбор брендовых вещей премиум-реплики и оригинала</h2>
                             </div>
                         </div>
                         {/* <div className='preview-search'>
@@ -197,7 +195,11 @@ export function PreviewContainer({ applyFilters }) {
                                 </div>
                                 {(dropped || isHiding) &&
                                     createPortal(
-                                        <div className={`filter-dropdown ${isAnimating ? 'filter-dropdown--active' : ''}`} style={dropdownPosition} onClick={(e) => e.stopPropagation()}>
+                                        <div className={`filter-dropdown ${isAnimating ? 'filter-dropdown--active' : ''}`} style={dropdownPosition} onClick={(e) => e.stopPropagation()} onTransitionEnd={(e) => {
+                                            if (e.propertyName === 'opacity' && isHiding) {
+                                                setIsHiding(false);
+                                            }
+                                        }}>
                                             <div className="filter-body">
                                                 {filters.sorting_options?.length &&
                                                     <div className="filter-item">

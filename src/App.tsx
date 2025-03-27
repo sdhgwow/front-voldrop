@@ -12,6 +12,7 @@ import { RecoveryPage } from './pages/auth/RecoveryPage';
 import { RecoveryPageHard } from './pages/auth/RecoveryPageHard';
 import { RegisterPageHard } from './pages/auth/RegPageHard';
 import { ProductInfoPage } from './pages/content/ProductInfoPage';
+import OfertaPage from './pages/common/OfertaPage';
 
 function App() {
   let initialTheme = localStorage.getItem('theme')
@@ -64,6 +65,10 @@ function App() {
           <Route
             path='/recovery/verify'
             element={<RecoveryPageHard />}
+          />
+          <Route
+            path='/oferta'
+            element={<OfertaPage />}
           />
           <Route path="/" element={<Navigate to='/catalog' />} />
           <Route path="*" element={<Navigate to='/catalog' />} />

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import '../css/footer.css'
 import api from '@/client/index';
 import { handleAlert } from '@/utils';
+import { Link } from 'react-router-dom';
 
 export function Footer() {
     const [email, setEmail] = useState('')
@@ -49,8 +50,7 @@ export function Footer() {
                     <div className='footer-middle__container'>
                         <p>VOLDROP</p>
                         <a>О нас</a>
-                        <a>Доставка и оплата</a>
-                        <a>Возврат и обмен</a>
+                        <Link to={'/oferta'}>Оферта</Link>
                         <a>Политика конфиденциальности</a>
                     </div>
                     <div className='footer-middle__container'>
