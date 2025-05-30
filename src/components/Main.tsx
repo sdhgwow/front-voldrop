@@ -12,6 +12,45 @@ export function Main({ filters }) {
     const [error, setError] = useState(null);
     const navigate = useNavigate()
 
+    const sampleProducts = [
+    {
+        id: 1,
+        name: "Кроссовки Nike Air Max",
+        image: "/img/koro.png",
+        cost: 7990,
+        old_cost: 9990,
+        is_new: true,
+        is_popular: true,
+    },
+    {
+        id: 2,
+        name: "Футболка Adidas",
+        image: "/img/koro.png",
+        cost: 1990,
+        old_cost: undefined,
+        is_new: false,
+        is_popular: true,
+    },
+    {
+        id: 3,
+        name: "Спортивные штаны Puma",
+        image: "/img/koro.png",
+        cost: 3490,
+        old_cost: 4490,
+        is_new: false,
+        is_popular: false,
+    },
+    {
+        id: 4,
+        name: "Куртка The North Face",
+        image: "/img/koro.png",
+        cost: 12990,
+        old_cost: undefined,
+        is_new: true,
+        is_popular: false,
+    },
+];
+    
     async function fetchProducts() {
         try {
             // console.log('вызываем getProducts')
@@ -68,7 +107,7 @@ export function Main({ filters }) {
                                         {x.is_popular && <div className='main-card__img-tag'><p>популярное</p></div>}
                                         {x.old_cost != undefined && <div className='main-card__img-tag main-card__img-tag--old'><p>Акция</p></div>}
                                     </div>
-                                    <img src={`https://api.voldrop.ru${x.image}`} alt='product' />
+                                    <img src={`${x.image}`} alt='product' />
                                 </Link>
                                 <div className='main-card__text'>
                                     <div className='main-card__top'>
