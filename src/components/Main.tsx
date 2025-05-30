@@ -99,7 +99,7 @@ export function Main({ filters }) {
                     </div>
                 ) : (
                     <>
-                        {products.map((x, y) => (
+                        {sampleProducts.map((x, y) => (
                             <div className='main-card' key={y}>
                                 <Link to={`/catalog/${x.id}`} className='main-card__img'>
                                     <div className='main-card__img-tags'>
