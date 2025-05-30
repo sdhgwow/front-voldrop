@@ -86,10 +86,10 @@ export function ProductInfoPage() {
     //     }
     // };
 
-    useEffect(() => {
-        fetchProduct();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [productID]);
+    // useEffect(() => {
+    //     fetchProduct();
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [productID]);
 
     useEffect(() => {
         if (product) {
