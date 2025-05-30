@@ -8,7 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 export function Main({ filters }) {
     const token = useSelector((state: RootState) => state.auth.token);
     const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const navigate = useNavigate()
 
