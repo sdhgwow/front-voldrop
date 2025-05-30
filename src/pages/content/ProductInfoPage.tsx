@@ -40,8 +40,7 @@ interface Product {
 }
 
 export function ProductInfoPage() {
-    const [product, setProduct] = useState<Product | null>(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const { productID } = useParams<{ productID: string }>();
     const [activeColor, setActiveColor] = useState<string>("");
     const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
@@ -49,16 +48,43 @@ export function ProductInfoPage() {
     const token = useSelector((state: RootState) => state.auth.token);
     const navigate = useNavigate()
 
-    async function fetchProduct() {
-        try {
-            const data = await api.content.getProduct({ id: productID });
-            setProduct(data);
-        } catch (err) {
-            console.log(err)
-        } finally {
-            setLoading(false);
-        }
+    const product = {
+        name: "Кроссовки Nike Air Max",
+        brand: "Nike",
+        is_new: true,
+        is_popular: true,
+        old_cost: 7000,
+        cost: 5000,
+        colors: [
+            { id: 1, name: "Красный" },
+            { id: 2, name: "Синий" },
+            { id: 3, name: "Зеленый" },
+        ],
+        sizes: [
+            { id: 1, size: "38" },
+            { id: 2, size: "39" },
+            { id: 3, size: "40" },
+        ],
+        description: "Кроссовки для бега с отличной амортизацией.\nУдобные и легкие.",
+        mainImage: { image: "/img/nike-air-max.jpg" },
+        images: [
+            { image: "/img/nike-air-max-1.jpg" },
+            { image: "/img/nike-air-max-2.jpg" },
+            { image: "/img/nike-air-max-3.jpg" },
+            { image: "/img/nike-air-max-4.jpg" },
+        ],
     };
+    
+    // async function fetchProduct() {
+    //     try {
+    //         const data = await api.content.getProduct({ id: productID });
+    //         setProduct(data);
+    //     } catch (err) {
+    //         console.log(err)
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
 
     useEffect(() => {
         fetchProduct();
@@ -89,9 +115,9 @@ export function ProductInfoPage() {
                             <div className="product-left__current">
                                 <div>
                                     {mainImage ? (
-                                        <img src={`https://api.voldrop.ru${mainImage.image}`} alt={product.name} />
+                                        <img src={`/img/koro.png`} alt={product.name} />
                                     ) : (
-                                        <img src="/placeholder.png" alt="Placeholder" />
+                                        <img src="/img/koro.png" alt="Placeholder" />
                                     )}
                                 </div>
                             </div>
